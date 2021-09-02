@@ -45,6 +45,13 @@
             android:layout_height="wrap_content"
             android:text="HOORAY!!" />
 
+        <Switch
+            android:id="@+id/switch1"
+            android:layout_width="100dp"
+            android:layout_height="40dp"
+            android:layout_weight="0"
+            android:text="Switch" />
+
         <Button
             android:id="@+id/button2"
             android:layout_width="wrap_content"
