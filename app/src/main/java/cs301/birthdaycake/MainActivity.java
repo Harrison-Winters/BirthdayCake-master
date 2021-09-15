@@ -12,11 +12,17 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+
+
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
         setContentView(R.layout.activity_main);
 
+        CakeView cakeV = (CakeView) findViewById(R.id.cakeview);
+        CakeController CakeC = new CakeController(cakeV);
 
-
+        View refBlowOut = findViewById(R.id.Blow_Out);
+        refBlowOut.setOnClickListener(CakeC);
 
     }
     public void goodbye(View button) {

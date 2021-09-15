@@ -35,6 +35,10 @@ public class CakeView extends SurfaceView {
     public static final float innerFlameRadius = 15.0f;
 
 
+    //Declare private instance variable CakeModel
+    private CakeModel cakeInfo;
+
+
 
     /**
      * ctor must be overridden here as per standard Java inheritance practice.  We need it
@@ -42,6 +46,9 @@ public class CakeView extends SurfaceView {
      */
     public CakeView(Context context, AttributeSet attrs) {
         super(context, attrs);
+
+        //Initialize instance of CakeModel
+        cakeInfo = new CakeModel();
 
         //This is essential or your onDraw method won't get called
         setWillNotDraw(false);
@@ -61,6 +68,8 @@ public class CakeView extends SurfaceView {
         wickPaint.setStyle(Paint.Style.FILL);
 
         setBackgroundColor(Color.WHITE);  //better than black default
+
+
 
     }
 
@@ -124,6 +133,12 @@ public class CakeView extends SurfaceView {
         drawCandle(canvas, cakeLeft + 2*cakeWidth/3 - candleWidth/2, cakeTop);
 
     }//onDraw
+
+    //getter method for CakeModel
+    public CakeModel getCakeModel() {
+        return cakeInfo;
+    }
+
 
 }//class CakeView
 
