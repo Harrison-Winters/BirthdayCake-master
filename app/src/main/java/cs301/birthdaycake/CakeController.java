@@ -57,9 +57,13 @@ public class CakeController implements View.OnClickListener, CompoundButton.OnCh
 
     @Override
     public boolean onTouch(View view, MotionEvent motionEvent) {
+
+
         if (motionEvent.getActionMasked() == MotionEvent.ACTION_DOWN){
             currCakeModel.balloonX = motionEvent.getX();
             currCakeModel.balloonY = motionEvent.getY();
+            currCakeModel.clickX = motionEvent.getX();
+            currCakeModel.clickY = motionEvent.getY();
             currCakeView.invalidate();
             return true;
         }
