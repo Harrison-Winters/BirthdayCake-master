@@ -31,6 +31,9 @@ public class MainActivity extends AppCompatActivity {
 
         SeekBar refSeekBar = findViewById(R.id.seekBar);
         refSeekBar.setOnSeekBarChangeListener(CakeC);
+
+        cakeV.setOnTouchListener(CakeC);
+
     }
     public void goodbye(View button) {
        Log.i("button", "Goodbye");

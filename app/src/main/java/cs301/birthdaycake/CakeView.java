@@ -7,6 +7,7 @@ import android.graphics.Paint;
 import android.util.AttributeSet;
 import android.view.SurfaceView;
 
+
 public class CakeView extends SurfaceView {
 
     /* These are the paints we'll use to draw the birthday cake below */
@@ -16,6 +17,8 @@ public class CakeView extends SurfaceView {
     Paint outerFlamePaint = new Paint();
     Paint innerFlamePaint = new Paint();
     Paint wickPaint = new Paint();
+    Paint balloonPaint = new Paint();
+    Paint stringPaint = new Paint();
 
     /* These constants define the dimensions of the cake.  While defining constants for things
         like this is good practice, we could be calculating these better by detecting
@@ -66,6 +69,8 @@ public class CakeView extends SurfaceView {
         innerFlamePaint.setStyle(Paint.Style.FILL);
         wickPaint.setColor(Color.BLACK);
         wickPaint.setStyle(Paint.Style.FILL);
+        balloonPaint.setColor(Color.BLUE);
+        stringPaint.setColor(Color.BLACK);
 
         setBackgroundColor(Color.WHITE);  //better than black default
 
@@ -137,14 +142,27 @@ public class CakeView extends SurfaceView {
 
         for (int i = 1; i <= cakeInfo.numCandles; i++) {
 
-            drawCandle(canvas, cakeLeft + i * cakeWidth / (cakeInfo.numCandles + 1) - (candleWidth*3) / (cakeInfo.numCandles) , cakeTop);
+            drawCandle(canvas, cakeLeft + i * (cakeWidth) / (cakeInfo.numCandles + 1) - (candleWidth) / (cakeInfo.numCandles) , cakeTop);
             //drawCandle(canvas, cakeLeft + 2 * cakeWidth / -candleWidth / 2, cakeTop);
         }
+
+        if (cakeInfo.balloonX > 0 && cakeInfo.balloonY > 0) {
+            drawBalloon(canvas, cakeInfo.balloonX, cakeInfo.balloonY);
+        }
+
     }//onDraw
 
     //getter method for CakeModel
     public CakeModel getCakeModel() {
         return cakeInfo;
+    }
+
+
+    public void drawBalloon (Canvas canvas, float centerX, float centerY) {
+
+        canvas.drawOval(centerX - 50.0f, centerY - 75.0f, centerX + 50.0f, centerY + 75.0f, balloonPaint);
+        canvas.drawRect(centerX - 5.0f, centerY + 75.0f, centerX + 5.0f, centerY + 150.0f, stringPaint);
+
     }
 
 
