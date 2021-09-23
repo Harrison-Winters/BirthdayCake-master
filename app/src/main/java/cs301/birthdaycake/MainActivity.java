@@ -4,6 +4,7 @@ import android.content.pm.ActivityInfo;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.MotionEvent;
 import android.view.View;
 import android.widget.CompoundButton;
 import android.widget.SeekBar;
@@ -15,12 +16,10 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-
-
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
         setContentView(R.layout.activity_main);
 
-        CakeView cakeV = (CakeView) findViewById(R.id.cakeview);
+        CakeView cakeV = (CakeView)findViewById(R.id.cakeview);
         CakeController CakeC = new CakeController(cakeV);
 
         View refBlowOut = findViewById(R.id.Blow_Out);
@@ -31,7 +30,10 @@ public class MainActivity extends AppCompatActivity {
 
         SeekBar refSeekBar = findViewById(R.id.seekBar);
         refSeekBar.setOnSeekBarChangeListener(CakeC);
+
+        cakeV.setOnTouchListener(CakeC);
     }
+
     public void goodbye(View button) {
        Log.i("button", "Goodbye");
     }
