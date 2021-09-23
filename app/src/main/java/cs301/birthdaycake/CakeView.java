@@ -16,6 +16,8 @@ public class CakeView extends SurfaceView {
     Paint outerFlamePaint = new Paint();
     Paint innerFlamePaint = new Paint();
     Paint wickPaint = new Paint();
+    Paint greenPaint = new Paint();
+    Paint redPaint = new Paint();
 
     /* These constants define the dimensions of the cake.  While defining constants for things
         like this is good practice, we could be calculating these better by detecting
@@ -66,6 +68,10 @@ public class CakeView extends SurfaceView {
         innerFlamePaint.setStyle(Paint.Style.FILL);
         wickPaint.setColor(Color.BLACK);
         wickPaint.setStyle(Paint.Style.FILL);
+        greenPaint.setColor(Color.GREEN);
+        greenPaint.setStyle(Paint.Style.FILL);
+        redPaint.setColor(Color.RED);
+        redPaint.setStyle(Paint.Style.FILL);
 
         setBackgroundColor(Color.WHITE);  //better than black default
 
@@ -139,6 +145,18 @@ public class CakeView extends SurfaceView {
 
             drawCandle(canvas, cakeLeft + i * cakeWidth / (cakeInfo.numCandles + 1) - (candleWidth*3) / (cakeInfo.numCandles) , cakeTop);
             //drawCandle(canvas, cakeLeft + 2 * cakeWidth / -candleWidth / 2, cakeTop);
+        }
+
+        // checkerboard pattern
+        if (cakeInfo.squareX >= 0 && cakeInfo.squareY >= 0) {
+            canvas.drawRect(cakeInfo.squareX - 50, cakeInfo.squareY - 50,
+                    cakeInfo.squareX, cakeInfo.squareY, greenPaint);
+            canvas.drawRect(cakeInfo.squareX, cakeInfo.squareY - 50,
+                    cakeInfo.squareX + 50, cakeInfo.squareY, redPaint);
+            canvas.drawRect(cakeInfo.squareX - 50, cakeInfo.squareY,
+                    cakeInfo.squareX, cakeInfo.squareY + 50, redPaint);
+            canvas.drawRect(cakeInfo.squareX, cakeInfo.squareY,
+                    cakeInfo.squareX + 50, cakeInfo.squareY + 50, greenPaint);
         }
     }//onDraw
 
