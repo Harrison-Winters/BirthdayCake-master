@@ -16,6 +16,9 @@ public class CakeView extends SurfaceView {
     Paint outerFlamePaint = new Paint();
     Paint innerFlamePaint = new Paint();
     Paint wickPaint = new Paint();
+    Paint balloonPaint = new Paint();
+    Paint stringPaint = new Paint();
+    Paint brightRed = new Paint();
     Paint greenPaint = new Paint();
     Paint redPaint = new Paint();
 
@@ -68,11 +71,15 @@ public class CakeView extends SurfaceView {
         innerFlamePaint.setStyle(Paint.Style.FILL);
         wickPaint.setColor(Color.BLACK);
         wickPaint.setStyle(Paint.Style.FILL);
+        balloonPaint.setColor(Color.BLUE);
+        stringPaint.setColor(Color.BLACK);
         greenPaint.setColor(Color.GREEN);
         greenPaint.setStyle(Paint.Style.FILL);
         redPaint.setColor(Color.RED);
         redPaint.setStyle(Paint.Style.FILL);
 
+        brightRed.setColor(0xFFFFA160);
+        brightRed.setTextSize(30);
         setBackgroundColor(Color.WHITE);  //better than black default
 
 
@@ -142,9 +149,17 @@ public class CakeView extends SurfaceView {
         //Now a candle in the center
 
         for (int i = 1; i <= cakeInfo.numCandles; i++) {
-
-            drawCandle(canvas, cakeLeft + i * cakeWidth / (cakeInfo.numCandles + 1) - (candleWidth*3) / (cakeInfo.numCandles) , cakeTop);
+            drawCandle(canvas, cakeLeft + i * (cakeWidth) / (cakeInfo.numCandles + 1) - (candleWidth) / (cakeInfo.numCandles) , cakeTop);
             //drawCandle(canvas, cakeLeft + 2 * cakeWidth / -candleWidth / 2, cakeTop);
+        }
+
+        if (cakeInfo.balloonX > 0 && cakeInfo.balloonY > 0) {
+            drawBalloon(canvas, cakeInfo.balloonX, cakeInfo.balloonY);
+        }
+
+
+        if(cakeInfo.clickX > 0 && cakeInfo.clickY > 0) {
+            writeText(canvas);
         }
 
         // checkerboard pattern
@@ -163,6 +178,17 @@ public class CakeView extends SurfaceView {
     //getter method for CakeModel
     public CakeModel getCakeModel() {
         return cakeInfo;
+    }
+
+    public void writeText(Canvas canvas) {
+        canvas.drawText("(" + cakeInfo.clickX + " ," + cakeInfo.clickY + ")", 1000, 1000, brightRed);
+    }
+
+    public void drawBalloon (Canvas canvas, float centerX, float centerY) {
+
+        canvas.drawOval(centerX - 50.0f, centerY - 75.0f, centerX + 50.0f, centerY + 75.0f, balloonPaint);
+        canvas.drawRect(centerX - 5.0f, centerY + 75.0f, centerX + 5.0f, centerY + 150.0f, stringPaint);
+
     }
 
 

@@ -129,6 +129,5 @@
                 android:onClick="goodbye"
                 android:text="Goodbye" />
         </LinearLayout>
-
     </LinearLayout>
 </LinearLayout>

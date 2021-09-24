@@ -4,6 +4,7 @@ import android.content.pm.ActivityInfo;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.MotionEvent;
 import android.view.View;
 import android.widget.CompoundButton;
 import android.widget.SeekBar;
@@ -32,6 +33,9 @@ public class MainActivity extends AppCompatActivity {
 
         SeekBar refSeekBar = findViewById(R.id.seekBar);
         refSeekBar.setOnSeekBarChangeListener(CakeC);
+
+        cakeV.setOnTouchListener(CakeC);
+
     }
     public void goodbye(View button) {
        Log.i("button", "Goodbye");

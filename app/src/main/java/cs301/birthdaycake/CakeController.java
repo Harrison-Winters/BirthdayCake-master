@@ -8,7 +8,7 @@ import android.widget.SeekBar;
 
 
 public class CakeController implements View.OnClickListener, CompoundButton.OnCheckedChangeListener
-, SeekBar.OnSeekBarChangeListener, View.OnTouchListener {
+, SeekBar.OnSeekBarChangeListener, View.OnTouchListener{
 
     private CakeView currCakeView;
     private CakeModel currCakeModel;
@@ -55,15 +55,23 @@ public class CakeController implements View.OnClickListener, CompoundButton.OnCh
 
     }
 
-
     @Override
-    public boolean onTouch(View v, MotionEvent event) {
-        if (event.getActionMasked() == MotionEvent.ACTION_DOWN) {
-            currCakeModel.squareX = event.getX();
-            currCakeModel.squareY = event.getY();
+    public boolean onTouch(View view, MotionEvent motionEvent) {
+
+
+        if (motionEvent.getActionMasked() == MotionEvent.ACTION_DOWN){
+            currCakeModel.balloonX = motionEvent.getX();
+            currCakeModel.balloonY = motionEvent.getY();
+            currCakeModel.clickX = motionEvent.getX();
+            currCakeModel.clickY = motionEvent.getY();
+            currCakeModel.squareX = motionEvent.getX();
+            currCakeModel.squareY = motionEvent.getY();
             currCakeView.invalidate();
             return true;
         }
+
+
+
         return false;
     }
 }
